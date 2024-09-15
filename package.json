@@ -1,22 +1,83 @@
 {
-  "name": "dayjs-hijri",
+  "name": "hijriday",
   "version": "1.0.0",
-  "description": "",
-  "type": "module",
-  "main": "index.js",
+  "description": "Arabic (hijri, lunar) Plugin for Day.js",
+  "main": "dist/hijriday.cjs.min.js",
+  "web": "dist/hijriday.umd.min.js",
+  "module": "dist/hijriday.esm.js",
+  "jsnext:main": "dist/hijriday.esm.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "yarn build && jest",
+    "lint": "eslint src/* test/*",
+    "build": "bili && yarn size",
+    "release": "standard-version $* && git push --follow-tags && npm publish",
+    "prepublishOnly": "npm run build",
+    "size": "size-limit"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "size-limit": [
+    {
+      "limit": "2.99 KB",
+      "path": "dist/hijriday.umd.min.js",
+      "ignore": [
+        "dayjs"
+      ]
+    },
+    {
+      "limit": "2.99 KB",
+      "path": "dist/hijriday.cjs.min.js",
+      "ignore": [
+        "dayjs"
+      ]
+    }
+  ],
+  "pre-commit": [
+    "lint"
+  ],
+  "jest": {
+    "testEnvironment": "node",
+    "roots": [
+      "test"
+    ],
+    "testRegex": "test/(.*?/)?.*test.js$",
+    "coverageDirectory": "./coverage/",
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "src/**/*"
+    ],
+    "transform": {
+      "^.+\\.js$": "<rootDir>/jest.transform.js"
+    }
+  },
+  "keywords": [
+    "dayjs",
+    "date",
+    "time",
+    "immutable",
+    "moment",
+    "jalali"
+  ],
+  "author": "Mohammad Hossein Mashhadi Ebad",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mashhadiebad/dayjs-hijri.git"
+  },
   "devDependencies": {
+    "prettier": "^3.3.3",
     "@babel/preset-env": "^7.25.4",
-    "@size-limit/preset-small-lib": "^11.1.5",
-    "bili": "^5.0.5",
+    "@size-limit/preset-small-lib": "^2.1.1",
+    "bili": "^4.8.1",
+    "codecov": "^3.5.0",
     "dayjs": "^1.11.13",
     "eslint": "^9.10.0",
-    "prettier": "^3.3.3",
-    "size-limit": "^11.1.5"
-  },
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jest": "^22.15.2",
+    "gzip-size-cli": "^3.0.0",
+    "jest": "^24.9.0",
+    "mockdate": "^2.0.5",
+    "pre-commit": "^1.2.2",
+    "size-limit": "^11.1.5",
+    "standard-version": "7.0.0"
+  }
 }
