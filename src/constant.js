@@ -15,4 +15,39 @@ export const ar = {
     "محرم_صفر_ربيع الأول_ربيع الثاني_جمادى الأولى_جمادى الآخرة_رجب_شعبان_رمضان_شوال_ذو القعدة_ذو الحجة".split(
       "_",
     ),
+  hMonthsShort:
+    "محرم_صفر_ربيع ١_ربيع ٢_جمادى ١_جمادى ٢_رجب_شعبان_رمضان_شوال_ذو القعدة_ذو الحجة".split(
+      "_",
+    ),
+};
+
+export const en = {
+  hMonths: [
+    "Muharram",
+    "Safar",
+    "Rabi' al-Awwal",
+    "Rabi' al-Thani",
+    "Jumada al-Ula",
+    "Jumada al-Alkhirah",
+    "Rajab",
+    "Sha’ban",
+    "Ramadhan",
+    "Shawwal",
+    "Thul-Qi’dah",
+    "Thul-Hijjah",
+  ],
+  hMonthsShort: [
+    "Muh",
+    "Saf",
+    "Rab-I",
+    "Rab-II",
+    "Jum-I",
+    "Jum-II",
+    "Raj",
+    "Sha",
+    "Ram",
+    "Shw",
+    "Dhu-Q",
+    "Dhu-H",
+  ],
 };
