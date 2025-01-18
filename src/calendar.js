@@ -278,8 +278,6 @@ function u2g(year, month, day) {
   return [gregorian.year, gregorian.month, gregorian.day];
 }
 
-console.log({new: g2u(2025,1,18),did: u2g(1446,7,18)});
-
 export default {
   toUmmAlQura: g2u, // Gregorian to Umm Al-Qura
   toGregorian: u2g, // Umm Al-Qura to Gregorian
