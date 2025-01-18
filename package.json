@@ -2,6 +2,7 @@
   "name": "hijri-day",
   "version": "1.0.0",
   "description": "A Hijri calendar (Based on Umm al-Qura calculations) plugin for day.js.",
+  "type":"module",
   "main": "dist/hijri-day.cjs.min.js",
   "web": "dist/hijri-day.umd.min.js",
   "module": "dist/hijri-day.esm.js",

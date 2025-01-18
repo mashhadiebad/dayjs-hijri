@@ -1,5 +1,5 @@
-import ar from "dayjs/esm/locale/ar";
-import en from "dayjs/esm/locale/en";
+import ar from 'dayjs/locale/ar.js';
+import en from 'dayjs/locale/en.js';
 
 import calendar from "./calendar";
 import * as C from "./constant";
