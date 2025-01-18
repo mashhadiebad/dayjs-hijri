@@ -64,10 +64,6 @@ export default (o, Dayjs, dayjs) => {
     return $isHijri(this);
   };
 
-  // dayjs.en.jmonths =
-  //   "Farvardin_Ordibehesht_Khordaad_Tir_Mordaad_Shahrivar_Mehr_Aabaan_Aazar_Dey_Bahman_Esfand".split(
-  //     "_",
-  //   );
   dayjs.locale("en", { ...en, ...C.en }, true);
   dayjs.locale("ar", { ...ar, ...C.ar }, true);
 
