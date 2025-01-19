@@ -217,7 +217,7 @@ export default (o, Dayjs, dayjs) => {
     }
     const str = formatStr || C.FORMAT_DEFAULT;
     const locale = localeObject || this.$locale();
-    const { hMonths } = locale;
+    const { hMonths, hMonthsShort } = locale;
     return str.replace(C.REGEX_FORMAT, (match) => {
       if (match.indexOf("[") > -1) return match.replace(/\[|\]/g, "");
       switch (match) {
@@ -230,7 +230,7 @@ export default (o, Dayjs, dayjs) => {
         case "MM":
           return $padStart(this.$hM + 1, 2, "0");
         case "MMM":
-          return hMonths[this.$hM].slice(0, 3);
+          return hMonthsShort[this.$hM];
         case "MMMM":
           return hMonths[this.$hM];
         case "D":
