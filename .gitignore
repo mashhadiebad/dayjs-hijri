@@ -1,0 +1,11 @@
+# IDE
+.idea
+
+# npm
+node_modules
+
+# jest
+coverage
+
+# build
+dist
