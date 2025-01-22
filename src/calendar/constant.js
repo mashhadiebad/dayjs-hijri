@@ -1,19 +1,5 @@
-// Helper functions
-// Constants
-const GREGORIAN_RANGE = [
-  [1924, 8, 1],
-  [2077, 11, 16],
-];
-
-const HIJRI_RANGE = [
-  [1343, 1, 1],
-  [1500, 12, 30],
-];
-
-const HIJRI_OFFSET = 1342 * 12;
-
 /** Month start offsets (in Hijri months). */
-const MONTH_STARTS = [
+export const MONTH_STARTS = [
   23999, 24029, 24058, 24088, 24118, 24147, 24177, 24207, 24237, 24265, 24295,
   24325, 24355, 24384, 24413, 24443, 24472, 24502, 24531, 24561, 24590, 24620,
   24649, 24679, 24708, 24738, 24767, 24797, 24826, 24857, 24886, 24916, 24944,
@@ -189,84 +175,14 @@ const MONTH_STARTS = [
   79871, 79900, 79930, 79960, 79990,
 ];
 
-function jdnToOrdinal(jdn) {
-  return jdn - 1721425;
-}
+export const HIJRI_OFFSET = 1342 * 12;
 
-function rjdToJdn(rjd) {
-  return rjd + 2400000;
-}
+const GREGORIAN_RANGE = [
+  [1924, 8, 1],
+  [2077, 11, 16],
+];
 
-const g2u = (year, month, day) => {
-  if (month <= 2) {
-    year -= 1;
-    month += 12;
-  }
-  const A = Math.floor(year / 100);
-  const B = 2 - A + Math.floor(A / 4);
-  const JDN =
-    Math.floor(365.25 * (year + 4716)) +
-    Math.floor(30.6001 * (month + 1)) +
-    day +
-    B -
-    1524.5;
-
-  // Modified Chronological Julian Day Number (MCJDN)
-  const mcjdn = JDN - 2400000;
-
-  // Find the Umm Al-Qura month data index
-  let i;
-  for (i = 0; i < MONTH_STARTS.length; i++) {
-    if (MONTH_STARTS[i] > mcjdn) break;
-  }
-  let im;
-  let id;
-  const iln = i + HIJRI_OFFSET; // Islamic lunar number
-  const iy = Math.floor((iln - 1) / 12) + 1; // Islamic year
-  const idCalculated = mcjdn - MONTH_STARTS[i - 1] + 1; // Islamic day
-  const imCalculated = iln - 12 * (iy - 1); // Islamic month
-  const ml = MONTH_STARTS[i] - MONTH_STARTS[i - 1]; // Month length
-  if (idCalculated > ml && imCalculated === 12) {
-    im = 1;
-    id = 1;
-  } else if (idCalculated > ml && imCalculated !== 12) {
-    im = imCalculated + 1;
-    id = 1;
-  } else {
-    im = Math.ceil(imCalculated);
-    id = Math.ceil(idCalculated);
-  }
-  return [iy, im, id];
-};
-
-function monthIndex(year, month) {
-  const priorMonths = (year - 1) * 12 + month - 1;
-  return priorMonths - HIJRI_OFFSET;
-}
-
-function toJulian(year, month, day) {
-  const index = monthIndex(year, month);
-  const rjd = MONTH_STARTS[index] + day - 1;
-  return rjdToJdn(rjd);
-}
-
-function toGregorianFromJulian(jdn) {
-  const ordinal = jdnToOrdinal(jdn);
-  const date = new Date((ordinal - 719163) * 86400000);
-  return {
-    year: date.getUTCFullYear(),
-    month: date.getUTCMonth() + 1,
-    day: date.getUTCDate(),
-  };
-}
-
-function u2g(year, month, day) {
-  const jdn = toJulian(year, month, day);
-  const gregorian = toGregorianFromJulian(jdn);
-  return [gregorian.year, gregorian.month, gregorian.day];
-}
-
-export default {
-  toUmmAlQura: g2u, // Gregorian to Umm Al-Qura
-  toGregorian: u2g, // Umm Al-Qura to Gregorian
-};
+const HIJRI_RANGE = [
+  [1343, 1, 1],
+  [1500, 12, 30],
+];

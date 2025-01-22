@@ -1,8 +1,9 @@
-import ar from 'dayjs/locale/ar.js';
-import en from 'dayjs/locale/en.js';
+import ar from "dayjs/locale/ar.js";
+import en from "dayjs/locale/en.js";
 
-import calendar from "./calendar";
 import * as C from "./constant";
+import hijriToGregorian from "./calendar/hijriToGregorian.js";
+import gregorianToHijri from "./calendar/gregorianToHijri.js";
 
 export default (o, Dayjs, dayjs) => {
   const proto = Dayjs.prototype;
@@ -94,7 +95,7 @@ export default (o, Dayjs, dayjs) => {
       (reg = cfg.date.match(C.REGEX_PARSE))
     ) {
       // 1397-08-08 or 13970808
-      const [y, m, d] = calendar.toGregorian(
+      const [y, m, d] = hijriToGregorian(
         parseInt(reg[1], 10),
         parseInt(reg[2], 10),
         parseInt(reg[3] || 1, 10),
@@ -105,7 +106,7 @@ export default (o, Dayjs, dayjs) => {
   };
 
   proto.InitHijri = function () {
-    const [hy, hm, hd] = calendar.toUmmAlQura(this.$y, this.$M + 1, this.$D);
+    const [hy, hm, hd] = gregorianToHijri(this.$y, this.$M + 1, this.$D);
     this.$hy = hy;
     this.$hM = hm - 1;
     this.$hD = hd;
@@ -119,7 +120,7 @@ export default (o, Dayjs, dayjs) => {
     const isStartOf = !$isUndefined(startOf) ? startOf : true;
     const unit = $prettyUnit(units);
     const instanceFactory = (d, m, y = this.$hy) => {
-      const [gy, gm, gd] = calendar.toGregorian(y, m + 1, d);
+      const [gy, gm, gd] = hijriToGregorian(y, m + 1, d);
       const ins = wrapper(new Date(gy, gm - 1, gd), this);
       return (isStartOf ? ins : ins.endOf(C.D)).$set("hour", 1); // prevent daylight saving issue in safari
     };
@@ -152,7 +153,7 @@ export default (o, Dayjs, dayjs) => {
     }
     const unit = $prettyUnit(units);
     const instanceFactory = (d, m, y = this.$hy) => {
-      const [gy, gm, gd] = calendar.toGregorian(y, m + 1, d);
+      const [gy, gm, gd] = hijriToGregorian(y, m + 1, d);
       this.$d.setFullYear(gy);
       this.$d.setMonth(gm - 1);
       this.$d.setDate(gd);
