@@ -293,7 +293,8 @@ export default (o, Dayjs, dayjs) => {
     if (!$isHijri(this)) {
       return oldDaysInMonth.bind(this)();
     }
-    return this.endOf(C.M).$hD;
+    const hijriArray = gregorianToHijri(this.$y, this.$M + 1, this.$D);
+    return hijriArray[3];
   };
 
   /**
