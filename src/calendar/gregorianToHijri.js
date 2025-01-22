@@ -16,60 +16,9 @@ function gregorianToJulianDayNumber(year, month, day) {
   return julianDayNumber;
 }
 
-function FindTheUmmAlQuraMonthDataIndex(modifiedChronologicalJulianDayNumber) {
-  return MONTH_STARTS.findIndex(
-    (start) => start >= modifiedChronologicalJulianDayNumber,
-  );
-}
-
 const gregorianToHijri = (year, month, day) => {
   const JulianDayNumber = gregorianToJulianDayNumber(year, month, day);
   const modifiedChronologicalJulianDayNumber = JulianDayNumber - 2400000;
-  // const monthDataIndex = FindTheUmmAlQuraMonthDataIndex(
-  //   modifiedChronologicalJulianDayNumber,
-  // );
-  // let hijriMonth;
-  // let hijriDay;
-  // const hijriLunarNumber = monthDataIndex + HIJRI_OFFSET;
-  // const hijriYear = Math.floor((hijriLunarNumber - 1) / 12) + 1;
-  // const calculatedHijriDay =
-  //   modifiedChronologicalJulianDayNumber - MONTH_STARTS[monthDataIndex - 1] + 1;
-  // const calculatedHijriMonth = hijriLunarNumber - 12 * (hijriYear - 1);
-  // const hijriMonthLength =
-  //   MONTH_STARTS[monthDataIndex + 1] - MONTH_STARTS[monthDataIndex];
-  //
-  // if (calculatedHijriDay > hijriMonthLength && calculatedHijriMonth === 12) {
-  //   console.log({
-  //     condition: 1,
-  //     calculatedHijriDay,
-  //     calculatedHijriMonth,
-  //     hijriMonthLength,
-  //   });
-  //   hijriMonth = 1;
-  //   hijriDay = 1;
-  // } else if (
-  //   calculatedHijriDay > hijriMonthLength &&
-  //   calculatedHijriMonth !== 12
-  // ) {
-  //   console.log({
-  //     condition: 2,
-  //     calculatedHijriDay,
-  //     calculatedHijriMonth,
-  //     hijriMonthLength,
-  //   });
-  //   hijriMonth = calculatedHijriMonth + 1;
-  //   hijriDay = 1;
-  // } else {
-  //   console.log({
-  //     condition: 3,
-  //     calculatedHijriDay,
-  //     calculatedHijriMonth,
-  //     hijriMonthLength,
-  //   });
-  //   hijriMonth = Math.ceil(calculatedHijriMonth);
-  //   hijriDay = Math.ceil(calculatedHijriDay);
-  // }
-  // }
   const bisect = (arr, x) => {
     let low = 0;
     let high = arr.length;
