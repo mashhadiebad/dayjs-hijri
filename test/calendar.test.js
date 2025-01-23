@@ -27,3 +27,13 @@ describe("hijriToGregorian function", () => {
     });
   });
 });
+
+describe("hijriMonthLength", () => {
+  calendarData.forEach(({ hml, hy, hm, hd, gy, gm, gd }) => {
+    test(`get ${gy}-${gm}-${gd} hijri month length ${hy}-${hm}-${hd}`, () => {
+      const [hijriYear, hijriMonth, hijriDay, hijriMonthLength] =
+        gregorianToHijri(gy, gm, gd);
+      expect(hijriMonthLength).toBe(hml);
+    });
+  });
+});

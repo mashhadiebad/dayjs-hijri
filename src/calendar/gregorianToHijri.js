@@ -39,11 +39,7 @@ const gregorianToHijri = (year, month, day) => {
   const hijriDay = MONTH_STARTS.includes(modifiedChronologicalJulianDayNumber)
     ? 1
     : modifiedChronologicalJulianDayNumber - MONTH_STARTS[index] + 1;
-  const hijriMonthLength = MONTH_STARTS.includes(
-    modifiedChronologicalJulianDayNumber,
-  )
-    ? MONTH_STARTS[index + 2] - MONTH_STARTS[index + 1]
-    : MONTH_STARTS[index + 1] - MONTH_STARTS[index];
+  const hijriMonthLength = MONTH_STARTS[index + 1] - MONTH_STARTS[index];
   return [hijriYear, hijriMonth, hijriDay, hijriMonthLength];
 };
 
