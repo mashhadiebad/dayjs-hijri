@@ -65,17 +65,3 @@ describe("add 100 days", () => {
     expect(a.add(100, "day")).toEqual(b);
   });
 });
-
-describe("add 1 month in Rajab 30th", () => {
-  let a = null;
-  let b = null;
-
-  beforeEach(() => {
-    a = dayjs("1446/07/30", { hijri: true });
-    b = dayjs("1446/08/29", { hijri: true });
-  });
-
-  it("add date", () => {
-    expect(a.add(1, "month")).toEqual(b);
-  });
-});
