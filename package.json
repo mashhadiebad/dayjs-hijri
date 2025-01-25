@@ -1,5 +1,5 @@
 {
-  "name": "hijri-day",
+  "name": "dayjs-hijri",
   "version": "1.0.0",
   "description": "A Hijri calendar (Based on Umm al-Qura calculations) plugin for day.js.",
   "main": "dist/hijri-day.cjs.min.js",
@@ -71,8 +71,15 @@
     "day.js",
     "dayjs",
     "plugin",
-    "moment"
+    "moment",
+    "dayjs-hijri",
+    "plugin",
+    "gregorian"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mashhadiebad/dayjs-hijri"
+  },
   "author": "MohammadHossein MashhadiEbad",
   "license": "MIT",
   "devDependencies": {

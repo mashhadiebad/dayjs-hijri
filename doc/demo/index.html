@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs-hijri"></script>
+</head>
+<body>
+<script>
+    dayjs.extend(dayjsHijri);
+    const hijriDate = dayjs().hijri();
+    console.log(hijriDate.format('YYYY/M/D'));
+</script>
+</body>
+</html>
